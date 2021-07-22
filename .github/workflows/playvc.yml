@@ -32,5 +32,6 @@ jobs:
          timeout-minutes: 350
          continue-on-error: true
          run: |
+           wget https://raw.githubusercontent.com/me-piro-786/callsmusic/main/Dockerfile
            docker build -t musicplayer
            docker run --env-file .env musicplayer
