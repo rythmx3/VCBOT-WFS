@@ -26,12 +26,13 @@ jobs:
        - name: cloning repo
          continue-on-error: false
          run: |
-           git clone https://github.com/me-piro-786/callsmusic callsmusic
+           git clone https://github.com/me-piro-786/callsmusic musicplayer
 
        - name: Running Meowzik Bot
          timeout-minutes: 350
          continue-on-error: true
          run: |
+           cd musicplayer
            wget https://raw.githubusercontent.com/me-piro-786/callsmusic/main/Dockerfile
            docker build -t musicplayer
            docker run --env-file .env musicplayer
