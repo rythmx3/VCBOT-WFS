@@ -26,13 +26,11 @@ jobs:
        - name: cloning repo
          continue-on-error: false
          run: |
-           git clone https://github.com/Devanagaraj/Tg_Meowzik_Bot Tg_Meowzik_Bot
+           git clone https://github.com/me-piro-786/callsmusic callsmusic
 
        - name: Running Meowzik Bot
          timeout-minutes: 350
          continue-on-error: true
          run: |
-           sudo apt-get install mpv
-           cd Tg_Meowzik_Bot
-           pip3 install -r requirements.txt
-           python3 main.py
+           docker build -t musicplayer
+           docker run --env-file .env musicplayer
