@@ -1,0 +1,38 @@
+name: setting up environment
+
+on:
+  push:
+    branches: [ main ]
+    paths-ignore: 'README.md'
+  workflow_dispatch:
+    
+env:
+  GitHubMail: "toxiccyber471@gmail.com"
+  GitHubName: "me-piro-786" 
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    steps:
+       - name: Checkout
+         uses: actions/checkout@main
+
+       - uses: styfle/cancel-workflow-action@0.9.0
+         name: "Cancel duplicate workflow runs"
+         with:
+            all_but_latest: true
+            access_token: ${{ github.token }}
+
+       - name: cloning repo
+         continue-on-error: false
+         run: |
+           git clone https://github.com/Devanagaraj/Tg_Meowzik_Bot Tg_Meowzik_Bot
+
+       - name: Running Meowzik Bot
+         timeout-minutes: 350
+         continue-on-error: true
+         run: |
+           sudo apt-get install mpv
+           cd Tg_Meowzik_Bot
+           pip3 install -r requirements.txt
+           python3 main.py
