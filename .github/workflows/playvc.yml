@@ -33,6 +33,5 @@ jobs:
          continue-on-error: true
          run: |
            cd musicplayer
-           wget https://raw.githubusercontent.com/me-piro-786/callsmusic/main/Dockerfile
-           docker build -t musicplayer
-           docker run --env-file .env musicplayer
+           docker build . --rm --force-rm --compress --no-cache=true --pull --file Dockerfile -t musicplayer
+           docker run --privileged --env-file .env --rm -i musicplayer
